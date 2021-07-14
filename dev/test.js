@@ -2,8 +2,20 @@ const Blockchain = require('./Blockchain');
 
 const bitcoin = new Blockchain();
 
-bitcoin.createNewBlockchain(150, 12, 11);
-bitcoin.createNewTransaction(100, 'Sender1', 'recipient1');
-console.log(bitcoin);
-bitcoin.createNewBlockchain(155, 11, 10);
-console.log(bitcoin.chain[1]);
+const previousBlockHash = 'NDFKJANLDSFAJK';
+
+const currentBlockData = [
+    { amount: 100,
+      sender: 'Sender1',
+      recipient: 'Recipient1'
+    },
+    { amount: 1000,
+        sender: 'Sender2',
+        recipient: 'Recipient2'
+      }
+];
+
+nounce = bitcoin.proofOfWork(previousBlockHash, currentBlockData);
+console.log(nounce);
+a = bitcoin.hashBlock(previousBlockHash, currentBlockData, nounce);
+console.log(a);

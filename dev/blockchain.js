@@ -39,8 +39,14 @@ Blockchain.prototype.hashBlock = function(previousBlockHash, currentBlockData, n
     return hash;
 }
 
-Blockchain.prototype.proofOfWork = function() {
-    
+Blockchain.prototype.proofOfWork = function(previousBlockHash, currentBlockData) {
+    let nounce = 0;
+    let hash = this.hashBlock(previousBlockHash, currentBlockData, nounce);
+    while(hash.substring(0,4) != '0000'){
+        nounce++;
+        hash = this.hashBlock(previousBlockHash, currentBlockData, nounce);
+    }
+    return nounce;
 }
 
 Blockchain.prototype.getLastBlock = function() {
